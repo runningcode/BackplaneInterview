@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.nelson.backplaneinterview.models.User;
 import com.nelson.backplaneinterview.support.ExpandableListFragment;
 
+import java.text.NumberFormat;
 import java.util.List;
 
 public class ReceiptsListFragment extends ExpandableListFragment
@@ -53,8 +54,9 @@ public class ReceiptsListFragment extends ExpandableListFragment
         if (objects != null && !objects.isEmpty()) {
             if (objects.get(0) instanceof User) {
                 User user = (User) objects.get(0);
+                NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
                 nameText.setText(user.getName());
-                dataText.setText("$" + user.getBalance());
+                dataText.setText(numberFormat.format(user.getBalance()));
                 objects.remove(0);
             }
             overviewListAdapter.setData(objects);
